@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+  <!-- navigation -->
+  <nav class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+    <div class="text-lg font-bold flex items-center space-x-2">
+      <span>💸 Finance Tracker</span>
+    </div>
+    <div>
+      Welcome, <strong>{{ username }}</strong> |
+      <a href="{{ url_for('logout') }}" class="hover:underline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="flex justify-center mt-8">
+    <img src="{{ url_for('static', filename='dashboard_illustration.png') }}" alt="Finance Dashboard Illustration" class="w-full max-w-md">
+  </div>
+
+  <!-- button -->
+  <main class="max-w-xl mx-auto mt-10 space-y-4 p-4">
+    <a href="{{ url_for('add') }}" class="block bg-indigo-500 hover:bg-indigo-600 text-white font-medium text-center py-3 rounded shadow">
+      ➕ Add Transaction
+    </a>
+    <a href="{{ url_for('transactions') }}" class="block bg-blue-500 hover:bg-blue-600 text-white font-medium text-center py-3 rounded shadow">
+      📋 View Transactions
+    </a>
+    <a href="{{ url_for('delete') }}" class="block bg-red-500 hover:bg-red-600 text-white font-medium text-center py-3 rounded shadow">
+      🗑️ Delete Transaction
+    </a>
+    <a href="{{ url_for('report') }}" class="block bg-amber-500 hover:bg-amber-600 text-white font-medium text-center py-3 rounded shadow">
+      📊 Generate Report
+    </a>
+    <a href="{{ url_for('budget') }}" class="block bg-green-500 hover:bg-green-600 text-white font-medium text-center py-3 rounded shadow">
+      💰 Set Budget
+    </a>
+    <a href="{{ url_for('export') }}" class="block bg-gray-800 hover:bg-gray-900 text-white font-medium text-center py-3 rounded shadow">
+      📤 Export to CSV
+    </a>
+  </main>
+</body>
+</html>

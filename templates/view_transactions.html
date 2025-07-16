@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>View Transactions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <div class="max-w-5xl mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">📋 Your Transactions</h2>
+    {% if transactions %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="text-left p-2 border">ID</th>
+            <th class="text-left p-2 border">Type</th>
+            <th class="text-left p-2 border">Amount</th>
+            <th class="text-left p-2 border">Category</th>
+            <th class="text-left p-2 border">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in transactions %}
+          <tr class="hover:bg-gray-50">
+            <td class="p-2 border">{{ t[0] }}</td>
+            <td class="p-2 border">{{ t[1].capitalize() }}</td>
+            <td class="p-2 border text-green-700">₹{{ t[2] }}</td>
+            <td class="p-2 border">{{ t[3] }}</td>
+            <td class="p-2 border">{{ t[4] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600">No transactions found.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}" class="block mt-6 text-indigo-600 hover:underline">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

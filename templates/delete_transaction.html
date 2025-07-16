@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Transaction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-red-50 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-xl">
+    <h2 class="text-2xl font-bold text-red-700 mb-6">🗑️ Delete Transaction</h2>
+
+    {% if transactions %}
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium mb-1">Select a Transaction</label>
+        <select name="transaction_id" class="w-full px-4 py-2 border rounded focus:ring" required>
+          {% for t in transactions %}
+            <option value="{{ t[0] }}">
+              ID #{{ t[0] }} | ₹{{ t[2] }} | {{ t[3] }} | {{ t[4] }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded">
+        Delete Selected Transaction
+      </button>
+    </form>
+    {% else %}
+      <p class="text-gray-600">No transactions available to delete.</p>
+    {% endif %}
+
+    <a href="{{ url_for('dashboard') }}" class="block mt-4 text-sm text-red-600 hover:underline">← Back to Dashboard</a>
+  </div>
+</body>
+</html>
